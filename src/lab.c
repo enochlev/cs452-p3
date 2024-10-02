@@ -124,7 +124,7 @@ void sh_init(struct shell *sh)
                     new_job->job_id = job_counter++;
                     jobs = new_job;
                     // Print job information
-                    printf("[%d] %d %s\n", new_job->job_id, pid, line);
+                    printf("[%d] %d %s&\n", new_job->job_id, pid, line);
                 }
             }
         }
@@ -156,7 +156,7 @@ void sh_init(struct shell *sh)
                 // Process has terminated
                 if (WIFEXITED(status) || WIFSIGNALED(status))
                 {
-                    printf("[%d] Done %s\n", (*job_ptr)->job_id, (*job_ptr)->cmd);
+                    printf("[%d] Done %s&\n", (*job_ptr)->job_id, (*job_ptr)->cmd);
                     // Remove the job from the list
                     struct job *finished_job = *job_ptr;
                     *job_ptr = (*job_ptr)->next;
@@ -325,7 +325,7 @@ bool do_builtin(struct shell *sh, char **argv)
                 }
                 else if (result == 0)
                 {   
-                    printf("[%d] %d %s\n", (*job_ptr)->job_id, (*job_ptr)->pid, (*job_ptr)->cmd);
+                    printf("[%d] %d %s&\n", (*job_ptr)->job_id, (*job_ptr)->pid, (*job_ptr)->cmd);
                     job_ptr = &(*job_ptr)->next;
                 }
                 else if (result == (*job_ptr)->pid)
@@ -333,7 +333,7 @@ bool do_builtin(struct shell *sh, char **argv)
                     // Process has terminated
                     if (WIFEXITED(status) || WIFSIGNALED(status))
                     {
-                        printf("[%d] Done %s\n", (*job_ptr)->job_id, (*job_ptr)->cmd);
+                        printf("[%d] Done %s&\n", (*job_ptr)->job_id, (*job_ptr)->cmd);
                         // Remove the job from the list
                         struct job *finished_job = *job_ptr;
                         *job_ptr = (*job_ptr)->next;
