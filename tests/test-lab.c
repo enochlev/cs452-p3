@@ -1,24 +1,3 @@
-#include "harness/unity.h"
-#include "../src/lab.h"
-
-
-void setUp(void) {
-  // set stuff up here
-}
-
-void tearDown(void) {
-  // clean stuff up here
-}
-
-void test_stuff(void){
-  // test stuff here
-}
-
-int main(void) {
-  UNITY_BEGIN();
-  RUN_TEST(test_stuff);
-  return UNITY_END();
-}
 #include <string.h>
 #include "harness/unity.h"
 #include "../src/lab.h"
@@ -135,7 +114,7 @@ void test_trim_white_mostly_whitespace(void)
 
 void test_get_prompt_default(void)
 {
-     char *prompt = get_prompt("MY_PROMPT");
+     char *prompt = get_prompt("MY_PROMPT2");
      TEST_ASSERT_EQUAL_STRING(prompt, "shell>");
      free(prompt);
 }
